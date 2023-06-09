@@ -10,17 +10,12 @@ void generateAsc(int* values, int size) {
 	}
 }
 
-// TEMPO MÉDIO
-// QUICKSORT: 67.545289
-// SELECTION SORT: 67.434224
-// BINARY SEARCH: 0.000005
-// LINEAR SEARCH: 0.000175
-
-
 void generateDesc(int* values, int size) {
 	int i;
+	int j = 0;
 	for(i = size; i > 0; i--){
-		values[i] = i;
+		values[j] = i;
+		j++;
 	}
 }
 

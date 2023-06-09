@@ -20,7 +20,7 @@ int main() {
   double linearSearchTotalTime = 0;
   double binarySearchTotalTime = 0;
 
-  for(i = 1; i <= TOTAL_FILES; i++) {
+  for(i = 1; i <= 1; i++) {
     file[7] = i + '0';
     int size = getDataSize(file);
     printf("\n\n\nTamanho array: %d\n", size);
