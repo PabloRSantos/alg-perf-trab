@@ -1,0 +1,3 @@
+#define INIT_SIZE 0
+#define SIZE_INTERVAL 40000
+#define TOTAL_FILES 5

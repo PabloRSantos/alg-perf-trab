@@ -6,6 +6,7 @@
 #include "selectionSort.h"
 #include "binarySearch.h"
 #include "linearSearch.h"
+#include "generateData.h"
 
 
 int main() {
@@ -19,7 +20,7 @@ int main() {
   double linearSearchTotalTime = 0;
   double binarySearchTotalTime = 0;
 
-  for(i = 1; i <= 5; i++) {
+  for(i = 1; i <= TOTAL_FILES; i++) {
     file[7] = i + '0';
     int size = getDataSize(file);
     printf("\n\n\nTamanho array: %d\n", size);
@@ -43,7 +44,7 @@ int main() {
     selectionSortTotalTime += time;
     printf("Tempo de execução: %f segundos\n\n\n", time);
   
-    printf("SELECTION SORT\n");
+    printf("LINEAR SEARCH\n");
     int indices[3] = { 0, size / 2, size };
     for(j = 0; j < 3; j++) {
         int targetValue = dataset[indices[j]];
