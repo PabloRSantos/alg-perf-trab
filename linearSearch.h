@@ -1,1 +1,1 @@
-int linearSearch(int arr[], int target);
+int linearSearch(int arr[], int target, int size);
