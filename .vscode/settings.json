@@ -13,6 +13,7 @@
     "bitset": "c",
     "initializer_list": "c",
     "unordered_map": "c",
-    "random": "c"
+    "random": "c",
+    "string.h": "c"
   }
 }
