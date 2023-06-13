@@ -9,7 +9,7 @@
 #include "generateData.h"
 #include "path.h"
 
-#define RUN_TIMES 100
+#define RUN_TIMES 10
 
 int main()
 {
@@ -48,13 +48,13 @@ int main()
       printf("%d Arquivo (%s) tamanho: %d\n", i, dirName, size);
 
       int *dataset = (int *)malloc(sizeof(int) * size);
-      dataset = getData(dataFilePath);
-      int *indiceDataset = (int *)malloc(sizeof(int) * size);
+      int *indiceDataset = (int *)malloc(sizeof(int) * INDEX_SIZE);
       indiceDataset = getData(indiceFilePath);
 
       for (k = 0; k < RUN_TIMES; k++)
       {
         // printf("QUICK SORT\n");
+        dataset = getData(dataFilePath);
         start = clock();
         quickSort(dataset, 0, size - 1);
         end = clock();
@@ -64,6 +64,7 @@ int main()
         // printf("Tempo de execução: %f segundos\n\n", time);
 
         // printf("SELECTION SORT\n");
+        dataset = getData(dataFilePath);
         start = clock();
         selectionSort(dataset, size);
         end = clock();
@@ -74,23 +75,22 @@ int main()
 
         // printf("LINEAR SEARCH\n");
         double linearSearchTime = 0;
-        for (j = 0; j < size; j++)
+        for (j = 0; j < INDEX_SIZE; j++)
         {
           int targetValue = dataset[indiceDataset[j]];
-
           start = clock();
           linearSearch(dataset, targetValue, size);
           end = clock();
           time = ((double)(end - start)) / CLOCKS_PER_SEC;
-          linearSearchTotalTime += time;
           linearSearchTime += time;
         }
-        linearSearchRunTime += linearSearchTime;
         // printf("Tempo de execução: %f segundos\n\n", linearSearchTime);
+        linearSearchRunTime += linearSearchTime / INDEX_SIZE;
+        linearSearchTotalTime += linearSearchTime / INDEX_SIZE;
 
         // printf("BINARY SEARCH\n");
         double binarySearchTime = 0;
-        for (j = 0; j < size; j++)
+        for (j = 0; j < INDEX_SIZE; j++)
         {
           int targetValue = dataset[indiceDataset[j]];
 
@@ -98,11 +98,11 @@ int main()
           binarySearch(dataset, 0, size - 1, targetValue);
           end = clock();
           time = ((double)(end - start)) / CLOCKS_PER_SEC;
-          binarySearchTotalTime += time;
           binarySearchTime += time;
         }
-        binarySearchRunTime += binarySearchTime;
         // printf("Tempo de execução: %f segundos\n\n\n", binarySearchTime);
+        binarySearchRunTime += binarySearchTime / INDEX_SIZE;
+        binarySearchTotalTime += binarySearchTime / INDEX_SIZE;
       }
 
       printf("\nTEMPO MÉDIO - RODADAS %d\n\n", RUN_TIMES);

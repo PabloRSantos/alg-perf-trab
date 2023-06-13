@@ -36,10 +36,9 @@ void generateRand(int *values, int size)
 
 void generateIndices(int *indices, int size)
 {
-	int orderedIndices[size];
 	int i;
 
-	for (i = 0; i < size; i++)
+	for (i = 0; i < INDEX_SIZE; i++)
 	{
 		indices[i] = rand() % (size + 1);
 	}
@@ -78,7 +77,7 @@ int main()
 
 			int size = INIT_SIZE + i * SIZE_INTERVAL;
 			int values[size];
-			int indices[size];
+			int indices[INDEX_SIZE];
 
 			generateIndices(indices, size);
 
@@ -101,6 +100,9 @@ int main()
 			for (j = 0; j < size; j++)
 			{
 				fwrite(&values[j], sizeof(int), 1, dataFile);
+			}
+			for (j = 0; j < INDEX_SIZE; j++)
+			{
 				fwrite(&indices[j], sizeof(int), 1, indiceFile);
 			}
 
