@@ -61,9 +61,9 @@ int main()
         selectionSortRunTime += time;
       }
 
-      printf("\nTEMPO MÉDIO - RODADAS %d\n\n", RUN_TIMES);
+      printf("\nTEMPO MÉDIO - RODADAS %d\n", RUN_TIMES);
       printf("QUICKSORT: %f\n", quickSortRunTime / RUN_TIMES);
-      printf("SELECTION SORT: %f\n", selectionSortRunTime / RUN_TIMES);
+      printf("SELECTION SORT: %f\n\n", selectionSortRunTime / RUN_TIMES);
 
       free(dataset);
     }
@@ -101,7 +101,7 @@ int main()
     linearSearchTotalTime += linearSearchTime / size;
     binarySearchTotalTime += binarySearchTime / size;
 
-    printf("\nTEMPO MÉDIO - RODADAS %d\n\n", size);
+    printf("\nTEMPO MÉDIO - RODADAS %d\n", size);
     printf("BINARY SEARCH: %f\n", binarySearchTime / size);
     printf("LINEAR SEARCH: %f\n\n", linearSearchTime / size);
 
