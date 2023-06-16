@@ -34,25 +34,21 @@ void generateRand(int *values, int size)
 	}
 }
 
-void generateIndices(int *indices, int size)
+void generateSearch(int *values, int size)
 {
 	int i;
-
-	for (i = 0; i < INDEX_SIZE; i++)
+	for (i = 0; i < size; i++)
 	{
-		indices[i] = rand() % (size + 1);
+		values[i] = i;
 	}
 }
 
 int main()
 {
 	FILE *dataFile;
-	FILE *indiceFile;
 	int i, l;
 	char dataFilePath[PATH_LENGTH];
 	char dataFileName[PATH_LENGTH];
-	char indiceFilePath[PATH_LENGTH];
-	char indiceFileName[PATH_LENGTH];
 	char dirName[DIR_LENGTH];
 
 	for (l = 0; l < DATA_TYPES; l++)
@@ -64,22 +60,14 @@ int main()
 			getFileName(i, dataFileName);
 			getFilePath(dataFileName, dirName, dataFilePath);
 
-			getIndiceFileName(i, indiceFileName);
-			getFilePath(indiceFileName, dirName, indiceFilePath);
-
 			dataFile = fopen(dataFilePath, "w+b");
-			indiceFile = fopen(indiceFilePath, "w+b");
-
-			if (dataFile == NULL || indiceFile == NULL)
+			if (dataFile == NULL)
 			{
 				return 0;
 			}
 
-			int size = INIT_SIZE + i * SIZE_INTERVAL;
+			int size = l < 3 ? (INIT_SIZE + i * SIZE_INTERVAL) : (SEARCH_INIT_SIZE + i * SEARCH_SIZE_INTERVAL);
 			int values[size];
-			int indices[INDEX_SIZE];
-
-			generateIndices(indices, size);
 
 			if (l == 0)
 			{
@@ -87,13 +75,16 @@ int main()
 			}
 			else if (l == 1)
 			{
-
 				generateAsc(values, size);
 			}
-			else
+			else if(l == 2)
 			{
 
 				generateDesc(values, size);
+			}
+			else
+			{
+				generateSearch(values, size);
 			}
 
 			int j;
@@ -101,13 +92,8 @@ int main()
 			{
 				fwrite(&values[j], sizeof(int), 1, dataFile);
 			}
-			for (j = 0; j < INDEX_SIZE; j++)
-			{
-				fwrite(&indices[j], sizeof(int), 1, indiceFile);
-			}
 
 			fclose(dataFile);
-			fclose(indiceFile);
 		}
 	}
 

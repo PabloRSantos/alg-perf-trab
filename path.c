@@ -6,12 +6,6 @@ void getFileName(int index, char *fileName)
   fileName[0] = index + '0';
 }
 
-void getIndiceFileName(int index, char *fileName)
-{
-  strcpy(fileName, "x.indice.bin");
-  fileName[0] = index + '0';
-}
-
 void getFilePath(char *fileName, char *dirName, char *filePath)
 {
   strcpy(filePath, "./data/");
@@ -33,7 +27,7 @@ void getDirName(int index, char *dirName)
     strcpy(dirName, "desc.");
     break;
   default:
-    strcpy(dirName, "rand.");
+    strcpy(dirName, "search.");
     break;
   }
 }
